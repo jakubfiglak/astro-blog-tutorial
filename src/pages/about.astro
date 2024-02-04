@@ -1,5 +1,24 @@
 ---
 const page_title = "About me";
+
+const identity = {
+  first_name: "Jakub",
+  country: "Poland",
+  occupation: "Frontend Developer",
+  hobbies: [
+    "sports",
+    "music",
+    "guitar playing",
+    "video games",
+    "fantasy sports games",
+  ],
+};
+
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+
+const happy = true;
+const finished = false;
+const goal = 3;
 ---
 
 <html lang="en">
@@ -10,6 +29,7 @@ const page_title = "About me";
     <meta name="generator" content={Astro.generator} />
     <title>{page_title}</title>
   </head>
+
   <body>
     <a href="/">Home</a>
     <a href="/about">About</a>
@@ -27,5 +47,42 @@ const page_title = "About me";
       This site will update as I complete more of the tutorial, so keep checking
       back and see how my journey is going!
     </p>
+
+    <section>
+      <h3>Here are a few facts about me:</h3>
+      <ul>
+        <li>My name is {identity.first_name}.</li>
+        <li>
+          I live in {identity.country} and I work as a {identity.occupation}.
+        </li>
+        {
+          identity.hobbies.length >= 2 && (
+            <li>
+              Two of my hobbies are: {identity.hobbies[0]} and{" "}
+              {identity.hobbies[1]}
+            </li>
+          )
+        }
+      </ul>
+    </section>
+
+    <section>
+      <h3>My skills are:</h3>
+      <ul>{skills.map((skill) => <li>{skill}</li>)}</ul>
+    </section>
+
+    <section>
+      {happy && <p>I am happy to be learning Astro!</p>}
+
+      {finished && <p>I finished this tutorial!</p>}
+
+      {
+        goal === 3 ? (
+          <p>My goal is to finish in 3 days.</p>
+        ) : (
+          <p>My goal is not 3 days.</p>
+        )
+      }
+    </section>
   </body>
 </html>
