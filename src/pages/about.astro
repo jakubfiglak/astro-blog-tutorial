@@ -1,4 +1,6 @@
 ---
+import "../styles/global.css";
+
 const page_title = "About me";
 
 const identity = {
@@ -19,6 +21,10 @@ const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
 const happy = true;
 const finished = false;
 const goal = 3;
+
+const skill_color = "navy";
+const font_weight = "bold";
+const text_case = "uppercase";
 ---
 
 <html lang="en">
@@ -28,6 +34,19 @@ const goal = 3;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{page_title}</title>
+
+    <style define:vars={{ skill_color, font_weight, text_case }}>
+      h1 {
+        color: purple;
+        font-size: 4rem;
+      }
+
+      .skill {
+        color: var(--skill_color);
+        font-weight: var(--font_weight);
+        text-transform: var(--text_case);
+      }
+    </style>
   </head>
 
   <body>
@@ -68,7 +87,7 @@ const goal = 3;
 
     <section>
       <h3>My skills are:</h3>
-      <ul>{skills.map((skill) => <li>{skill}</li>)}</ul>
+      <ul>{skills.map((skill) => <li class="skill">{skill}</li>)}</ul>
     </section>
 
     <section>
