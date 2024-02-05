@@ -7,14 +7,13 @@ import type {
   MarkdownInstance,
 } from "astro";
 import type { Frontmatter } from "../../types";
+import { get_unique_tags } from "../../utils";
 
 export const getStaticPaths = (async () => {
   const all_posts: MarkdownInstance<Frontmatter>[] =
     await Astro.glob("../posts/*.md");
 
-  const unique_tags = [
-    ...new Set(all_posts.map((post) => post.frontmatter.tags).flat()),
-  ];
+  const unique_tags = get_unique_tags(all_posts);
 
   return unique_tags.map((tag) => ({
     params: { tag },

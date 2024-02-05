@@ -1,0 +1,13 @@
+---
+import Tags from "../../components/tags.astro";
+import BaseLayout from "../../layouts/base-layout.astro";
+import type { Frontmatter } from "../../types";
+import { get_unique_tags } from "../../utils";
+
+const all_posts = await Astro.glob<Frontmatter>("../posts/*.md");
+const tags = get_unique_tags(all_posts);
+---
+
+<BaseLayout page_title="Tags">
+  <Tags tags={tags} />
+</BaseLayout>
