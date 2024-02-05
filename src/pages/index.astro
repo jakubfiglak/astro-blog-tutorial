@@ -1,26 +1,9 @@
 ---
-import "../styles/global.css";
-import Footer from "../components/footer.astro";
-import Header from "../components/header.astro";
+import BaseLayout from "../layouts/base-layout.astro";
 
 const page_title = "Home Page";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>{page_title}</title>
-  </head>
-  <body>
-    <Header />
-    <h1>{page_title}</h1>
-    <Footer />
-
-    <script>
-      import "../scripts/menu";
-    </script>
-  </body>
-</html>
+<BaseLayout page_title={page_title}>
+  <h2>My awesome blog subtitle</h2>
+</BaseLayout>
