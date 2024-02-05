@@ -1,15 +1,9 @@
 ---
+import type { Frontmatter } from "../types";
 import BaseLayout from "./base-layout.astro";
 
 interface Props {
-  frontmatter: {
-    title: string;
-    author: string;
-    pubDate: string;
-    description: string;
-    image: { url: string; alt: string };
-    tags: Array<string>;
-  };
+  frontmatter: Frontmatter;
 }
 
 const { frontmatter } = Astro.props;
