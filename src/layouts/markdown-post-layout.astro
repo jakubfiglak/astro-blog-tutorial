@@ -6,6 +6,7 @@ interface Props {
     pubDate: string;
     description: string;
     image: { url: string; alt: string };
+    tags: Array<string>;
   };
 }
 
@@ -18,3 +19,24 @@ const { frontmatter } = Astro.props;
 <p>Written by: {frontmatter.author}</p>
 <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
 <slot />
+<ul class="tags">
+  {frontmatter.tags.map((tag) => <li class="tag">{tag}</li>)}
+</ul>
+
+<style>
+  .tags {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .tag {
+    padding: 0.5rem;
+    background: violet;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+  }
+</style>
