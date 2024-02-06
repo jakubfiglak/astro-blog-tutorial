@@ -1,7 +1,7 @@
 export interface Frontmatter {
   title: string;
   author: string;
-  pubDate: string;
+  pubDate: Date;
   description: string;
   image: { url: string; alt: string };
   tags: Array<string>;

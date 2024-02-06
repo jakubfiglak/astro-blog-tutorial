@@ -1,24 +1,19 @@
 ---
 import BlogPostListItem from "../../components/blog-post-list-item.astro";
 import BaseLayout from "../../layouts/base-layout.astro";
-import type {
-  GetStaticPaths,
-  InferGetStaticPropsType,
-  MarkdownInstance,
-} from "astro";
-import type { Frontmatter } from "../../types";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 import { get_unique_tags } from "../../utils";
+import { getCollection } from "astro:content";
 
 export const getStaticPaths = (async () => {
-  const all_posts: MarkdownInstance<Frontmatter>[] =
-    await Astro.glob("../posts/*.md");
+  const all_posts = await getCollection("posts");
 
   const unique_tags = get_unique_tags(all_posts);
 
   return unique_tags.map((tag) => ({
     params: { tag },
     props: {
-      posts: all_posts.filter((post) => post.frontmatter.tags.includes(tag)),
+      posts: all_posts.filter((post) => post.data.tags.includes(tag)),
     },
   }));
 }) satisfies GetStaticPaths;
@@ -34,10 +29,7 @@ const { posts } = Astro.props;
   <ul>
     {
       posts.map((post) => (
-        <BlogPostListItem
-          title={post.frontmatter.title}
-          url={post.url || "/"}
-        />
+        <BlogPostListItem title={post.data.title} url={`/posts/${post.slug}`} />
       ))
     }
   </ul>
